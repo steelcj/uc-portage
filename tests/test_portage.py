@@ -206,6 +206,21 @@ class Offerings(PortageTestCase):
                 self.assertNotEqual(r.returncode, 0)
         self.assertFalse((self.root / "escape.md").exists())
 
+    def test_a_source_outside_the_offering_is_refused(self):
+        self.offering("one", [
+            {"source": "../two/secret.md", "dest": "a.md"}], valid=False)
+        r = self.plan("one")
+        self.assertNotEqual(r.returncode, 0)
+
+    def test_a_language_that_is_not_a_tag_is_refused(self):
+        self.source_file("one", "en-ca/a.md", "a\n")
+        self.offering("one", [
+            {"source": "{language}/a.md", "dest": "a.md"}],
+            source_language="en-ca")
+        r = self.run_cli("plan", ["one"], "--language", "../en-ca")
+        self.assertNotEqual(r.returncode, 0)
+        self.assertIn("not a lowercase tag", r.stderr)
+
     def test_state_file_is_written_at_the_target_root(self):
         self.offering("one", [{"state": "absent", "dest": "a.md"}])
         self.target_file("a.md", "x\n")

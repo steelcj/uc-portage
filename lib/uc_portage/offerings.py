@@ -16,6 +16,8 @@ from dataclasses import dataclass
 from pathlib import Path, PurePosixPath
 from typing import List, Optional
 
+import re
+
 import yaml
 
 from .errors import PortageError
@@ -29,6 +31,7 @@ SCHEDULED_STATES = ("directory", "touch")
 SCHEDULED_KEYS = ("content", "substitute", "glob", "exclude")
 ANCHORS = ("EOF", "BOF")
 LANGUAGE_PLACEHOLDER = "{language}"
+LANGUAGE_TAG = re.compile(r"^[a-z]{2}(-[a-z]{2})?$")
 
 
 @dataclass
@@ -115,13 +118,24 @@ def check_offering(data: dict, offering_id: str, path: Path) -> None:
                            f"directory name {offering_id!r}")
 
 
+def inside(offering_dir: Path, source: str, offering_id: str) -> Path:
+    """A source path, refused unless it stays inside its offering
+    (decision 0003)."""
+    posix = PurePosixPath(source)
+    if posix.is_absolute() or ".." in posix.parts or "\\" in source \
+            or ":" in source:
+        raise PortageError(f"source {source!r} in offering {offering_id!r} "
+                           f"must be a relative path inside the offering")
+    return offering_dir / posix
+
+
 def resolve_source(offering_dir: Path, source: str, language: Optional[str],
                    source_language: Optional[str], offering_id: str) -> Path:
     """Resolve a source path, filling {language} with the subscriber's
     language and falling back to the offering's source language when the
     subscriber's language has no file of its own."""
     if LANGUAGE_PLACEHOLDER not in source:
-        return offering_dir / PurePosixPath(source)
+        return inside(offering_dir, source, offering_id)
     candidates = [lang for lang in (language, source_language) if lang]
     if not candidates:
         raise PortageError(
@@ -129,13 +143,14 @@ def resolve_source(offering_dir: Path, source: str, language: Optional[str],
             f"{source!r} but neither a language nor the offering's "
             f"source_language is given")
     for lang in candidates:
-        path = offering_dir / PurePosixPath(
-            source.replace(LANGUAGE_PLACEHOLDER, lang))
+        path = inside(offering_dir, source.replace(LANGUAGE_PLACEHOLDER, lang),
+                      offering_id)
         if path.is_file():
             return path
     # Neither exists: report the first candidate as the missing source.
-    return offering_dir / PurePosixPath(
-        source.replace(LANGUAGE_PLACEHOLDER, candidates[0]))
+    return inside(offering_dir,
+                  source.replace(LANGUAGE_PLACEHOLDER, candidates[0]),
+                  offering_id)
 
 
 def load_offering(source_root: Path, offering_id: str,
@@ -171,6 +186,9 @@ def load_offerings(source_root: Path, offering_ids: List[str],
                    language: Optional[str] = None) -> List[Offering]:
     if not source_root.is_dir():
         raise PortageError(f"offering source not found: {source_root}")
+    if language is not None and not LANGUAGE_TAG.match(language):
+        raise PortageError(f"language {language!r} is not a lowercase tag "
+                           f"such as en-ca")
     seen = set()
     offerings = []
     for offering_id in offering_ids:

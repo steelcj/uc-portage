@@ -11,10 +11,10 @@ All notable changes to uc-portage are recorded here, in the form of [Keep a Chan
 - `schemas/offering.schema.yaml`, and a standard-library validator for the subset of JSON Schema it uses.
 - `uc_portage.resources.data_dir`, the one resolver for package data mapped in from the repository root, shared with uc-automa: installed packages read their own copy; editable installs and checkouts fall back to the repository root only after proving it is this project's checkout.
 - Checksums that normalise line endings in text files, so a CRLF checkout is not reported as a local edit; text is written with LF.
-- A case-collision check, and a check that no dest is claimed twice or lies outside the target.
-- `{language}` in source paths, falling back to the offering's `source_language`.
+- A case-collision check, and a check that no dest is claimed twice or lies outside the target, nor any source outside its offering (decision 0003).
+- `{language}` in source paths, filled with the subscribing repository's language, given as `--language`, and falling back to the offering's `source_language` only when that translation is missing.
 - `uc-portage plan`, `status`, `apply` and `harvest`; `harvest` reports target-only changes and writes nothing.
-- Decision records migrated from file-fairy: the declared sync policy and one key per axis.
+- Decision records migrated from file-fairy, the declared sync policy and one key per axis, and decision 0003, destinations stay inside the target.
 
 ### Changed from file-fairy
 

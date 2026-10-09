@@ -102,7 +102,7 @@ When the markers are missing, the block is inserted at its `anchor`, `EOF` by de
 
 ### Languages
 
-A source path may contain `{language}`. uc-portage fills it with the language given by `--language`, and when that language has no file of its own, falls back to the offering's `source_language`.
+A source path may contain `{language}`. uc-portage fills it with the subscribing repository's language, given as `--language`, so a `fr-ca` repository receives the French text. Only when the offering has no file in that language does uc-portage fall back to the offering's `source_language`. uc-portage takes the language as a parameter and reads no configuration of its own; uc-automa passes the language from the repository's `.uc-automa.yaml`.
 
 ```yaml
 format: 1
@@ -168,13 +168,15 @@ In 0.1.0 harvest only reports. Writing changes back to the publishing repository
 - Text uc-portage writes, such as files holding blocks, is written with LF line endings.
 - Two dests that differ only by case, such as `README.md` and `readme.md`, are refused, because they are one file on Windows and macOS and two on Linux.
 - A dest is claimed by one file or absent item, or by any number of blocks with distinct names, never twice.
-- A dest must be a relative path inside the target: no leading slash, no drive letter, no backslash, no `..`.
+- A dest must be a relative path inside the target, and a source a relative path inside its offering: no leading slash, no drive letter, no backslash, no `..` <a id="cite-steel-2026c"></a>[(Steel, 2026c)](#ref-steel-2026c).
 
 ## References
 
 <a id="ref-steel-2026a"></a>Steel, C. (2026a). *Decision: Declared sync policy* (Version 0.2.0) [Unpublished manuscript]. uc-portage. [0001--declared-sync-policy-v0.2.0.md](../../decisions/0001--declared-sync-policy-v0.2.0.md) [↩](#cite-steel-2026a)
 
 <a id="ref-steel-2026b"></a>Steel, C. (2026b). *Decision: One key per axis* (Version 0.2.0) [Unpublished manuscript]. uc-portage. [0002--one-key-per-axis-v0.2.0.md](../../decisions/0002--one-key-per-axis-v0.2.0.md) [↩](#cite-steel-2026b)
+
+<a id="ref-steel-2026c"></a>Steel, C. (2026c). *Decision: Destinations stay inside the target* (Version 0.1.0) [Unpublished manuscript]. uc-portage. [0003--destinations-stay-inside-the-target-v0.1.0.md](../../decisions/0003--destinations-stay-inside-the-target-v0.1.0.md) [↩](#cite-steel-2026c)
 
 ## Changelog
 
