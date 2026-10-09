@@ -1,0 +1,108 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "urn:uuid:02815d11-46cf-4fae-af6a-332d5ed02f96"
+title: "uc-portage offering"
+description: >
+  The contract for an offering.yaml: one offering, which is a named set of
+  files, managed blocks and retractions that a receiving repository may
+  subscribe to. Paths in source are relative to the offering's own
+  directory; paths in dest are relative to the receiving repository's root,
+  written with forward slashes. uc-portage owns this schema because it is
+  the tool that reads offerings.
+type: object
+required: [format, id, items]
+additionalProperties: false
+properties:
+  format:
+    description: "Version of this contract; 1 for uc-portage 0.1.0"
+    const: 1
+  id:
+    description: "The offering's identifier, which is also its directory name"
+    type: string
+    pattern: '^[a-z0-9]+(-[a-z0-9]+)*$'
+  title:
+    type: string
+    minLength: 1
+  description:
+    type: string
+  source_language:
+    description: >
+      The language a {language} placeholder in a source path falls back to
+      when the subscriber's language has no file of its own
+    type: string
+    pattern: '^[a-z]{2}(-[a-z]{2})?$'
+  sync_mode:
+    description: "Default sync mode for the offering's items; mirror when absent"
+    $ref: "#/$defs/sync_mode"
+  implements:
+    description: >
+      Identifiers of the rules this offering implements, such as directive
+      identifiers; carried for the publisher's checks, not read by uc-portage
+    type: array
+    items:
+      type: string
+      minLength: 1
+  items:
+    type: array
+    minItems: 1
+    items:
+      oneOf:
+        - $ref: "#/$defs/file_item"
+        - $ref: "#/$defs/block_item"
+        - $ref: "#/$defs/absent_item"
+
+$defs:
+  sync_mode:
+    enum: [mirror, seed_if_missing, overwrite, reference_only]
+  dest:
+    description: "A relative path with forward slashes, never absolute, never leaving the target"
+    type: string
+    pattern: '^(?!/)(?![A-Za-z]:)(?!.*\\)(?!(.*/)?\.\.(/|$)).+$'
+  source:
+    description: "A path relative to the offering's directory; may contain {language}"
+    type: string
+    pattern: '^(?!/)(?![A-Za-z]:)(?!.*\\)(?!(.*/)?\.\.(/|$)).+$'
+  file_item:
+    title: "file item"
+    type: object
+    required: [source, dest]
+    additionalProperties: false
+    properties:
+      state:
+        const: file
+      source:
+        $ref: "#/$defs/source"
+      dest:
+        $ref: "#/$defs/dest"
+      sync_mode:
+        $ref: "#/$defs/sync_mode"
+  block_item:
+    title: "block item"
+    type: object
+    required: [block, source, dest]
+    additionalProperties: false
+    properties:
+      block:
+        description: "The block's name, used in its begin and end markers"
+        type: string
+        pattern: '^[a-z0-9]+(-[a-z0-9]+)*$'
+      source:
+        $ref: "#/$defs/source"
+      dest:
+        $ref: "#/$defs/dest"
+      anchor:
+        description: "Where the block is inserted when its markers are absent"
+        enum: [EOF, BOF]
+      sync_mode:
+        $ref: "#/$defs/sync_mode"
+  absent_item:
+    title: "absent item"
+    type: object
+    required: [state, dest]
+    additionalProperties: false
+    properties:
+      state:
+        const: absent
+      dest:
+        $ref: "#/$defs/dest"
+      sync_mode:
+        $ref: "#/$defs/sync_mode"

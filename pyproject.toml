@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "uc-portage"
+dynamic = ["version"]
+description = "Declarative file reconciler: carries offerings into a repository with plan, apply, status and harvest, and reports changes worth sending back."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "GPL-3.0-or-later" }
+authors = [{ name = "Christopher Steel" }]
+dependencies = ["PyYAML>=6.0"]
+
+[project.scripts]
+uc-portage = "uc_portage.cli:main"
+
+[tool.setuptools]
+# schemas/ lives once, at the repository root; mapping it into the
+# package as uc_portage.schemas carries it in every install.
+packages = ["uc_portage", "uc_portage.schemas"]
+
+[tool.setuptools.package-dir]
+"" = "lib"
+"uc_portage.schemas" = "schemas"
+
+[tool.setuptools.package-data]
+"uc_portage.schemas" = ["*.yaml"]
+
+[tool.setuptools.dynamic]
+# VERSION is the single source of the version.
+version = { file = "VERSION" }
