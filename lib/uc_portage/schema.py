@@ -8,7 +8,7 @@ a check that is not made.
 
 Supported: $schema, $id, $defs, $ref (local, "#/$defs/NAME"), title,
 description, type, const, enum, pattern, minLength, minItems, items,
-properties, required, additionalProperties, oneOf.
+properties, required, additionalProperties, oneOf, allOf.
 
 uc-automa validates its own schemas with this module too, so the
 subset is defined in one place.
@@ -28,7 +28,7 @@ ANNOTATIONS = {"$schema", "$id", "$defs", "$comment", "title",
                "description"}
 ASSERTIONS = {"$ref", "type", "const", "enum", "pattern", "minLength",
               "minItems", "items", "properties", "required",
-              "additionalProperties", "oneOf"}
+              "additionalProperties", "oneOf", "allOf"}
 
 TYPES = {
     "object": lambda v: isinstance(v, dict),
@@ -134,6 +134,9 @@ def _check(value, schema: dict, root: dict, where: str, errors: list) -> None:
             elif isinstance(schema.get("additionalProperties"), dict):
                 _check(item, schema["additionalProperties"], root,
                        f"{where}.{key}", errors)
+
+    for option in schema.get("allOf", []):
+        _check(value, option, root, where, errors)
 
     if "oneOf" in schema:
         results = []

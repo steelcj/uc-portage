@@ -245,6 +245,12 @@ class Schema(unittest.TestCase):
                           offering_schema())
         self.assertTrue(any("colour" in e for e in errors), errors)
 
+    def test_all_of_applies_every_subschema(self):
+        schema = {"allOf": [{"type": "object", "required": ["a"]},
+                            {"required": ["b"]}]}
+        self.assertEqual(validate({"a": 1, "b": 2}, schema), [])
+        self.assertEqual(len(validate({}, schema)), 2)
+
     def test_an_item_matching_no_shape_is_reported(self):
         errors = validate({"format": 1, "id": "x", "items": [
             {"dest": "a"}]}, offering_schema())

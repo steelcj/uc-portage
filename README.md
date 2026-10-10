@@ -44,7 +44,7 @@ The tests run from a checkout without installing; they build scratch offerings a
 
 An editable install, `python3 -m pip install -e .`, needs pip 21.3 or later, because the project is defined by `pyproject.toml` alone.
 
-`schemas/` lives once, at the repository root. `pyproject.toml` maps it into the package as `uc_portage.schemas`, so a wheel carries it. In an editable install or a checkout, `uc_portage.resources.data_dir` falls back to the repository root, but only after confirming that the root's `pyproject.toml` names this project; otherwise it fails with an error naming the missing data. The reasons are recorded in uc-automa 0018, *Decision: Package Data Mapped from the Repository Root* (`urn:uuid:7ba945fe-2f0d-45fb-a347-bda6d12294be`), which both tools follow.
+`schemas/` lives once, at the repository root. `pyproject.toml` maps it into the package as `uc_portage.schemas`, so a wheel carries it. In an editable install or a checkout, `uc_portage.resources.data_dir` falls back to the repository root, but only after confirming that the root's `pyproject.toml` names this project; otherwise it fails with an error naming the missing data. The reasons are recorded in uc-automa 0019, *Decision: Package Data Mapped from the Repository Root* (`urn:uuid:7ba945fe-2f0d-45fb-a347-bda6d12294be`), which both tools follow.
 
 ## Documentation
 
