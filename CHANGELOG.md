@@ -4,6 +4,8 @@ All notable changes to uc-portage are recorded here, in the form of [Keep a Chan
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-10-09
+
 ### Added
 
 - The reconciliation engine from file-fairy 0.7.0, with its tests: the `mirror`, `seed_if_missing`, `overwrite` and `reference_only` sync modes, managed blocks, `state: absent` retraction, and the per-target state file with checksums.
