@@ -16,6 +16,8 @@ All notable changes to uc-portage are recorded here, in the form of [Keep a Chan
 - `uc-portage plan`, `status`, `apply` and `harvest`; `harvest` reports target-only changes and writes nothing.
 - Decision records migrated from file-fairy, the declared sync policy and one key per axis, and decision 0003, destinations stay inside the target.
 
+- Subscribed to uc-automa with `layout: python-tool`: `.uc-automa.yaml`, the `.uc-portage.assets/` sidecar, the offerings' signpost block in `CLAUDE.md`, and a generated `en-ca/docs/README.md`.
+
 ### Changed from file-fairy
 
 - The command is `uc-portage`; there is no short alias and no bare form that means apply.

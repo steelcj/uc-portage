@@ -5,7 +5,6 @@ Forward plan only; completed items move to [CHANGELOG.md](CHANGELOG.md).
 ## Next release
 
 - `harvest` writes changes back to the publishing repository's checkout. Whether as a branch, a patch file or both is an open question.
-- Subscribe to uc-automa's offerings with `layout: python-tool`, and bring the repository into conformance.
 
 ## Later
 

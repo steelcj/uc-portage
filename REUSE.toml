@@ -1,7 +1,7 @@
 version = 1
 
 [[annotations]]
-path = ["lib/**", "tests/**", "schemas/**", "pyproject.toml", "VERSION", ".gitattributes", ".editorconfig", ".gitignore"]
+path = ["lib/**", "tests/**", "schemas/**", "pyproject.toml", "VERSION", ".uc-automa.yaml", ".uc-portage-state.yaml", ".uc-portage.assets/**", ".gitattributes", ".editorconfig", ".gitignore"]
 SPDX-FileCopyrightText = "Christopher Steel"
 SPDX-License-Identifier = "GPL-3.0-or-later"
 

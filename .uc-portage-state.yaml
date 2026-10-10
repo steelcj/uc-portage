@@ -1,0 +1,9 @@
+format: 1
+synced:
+  CLAUDE.md::uc-automa-signpost:
+    offering: claude-signpost
+    source: '{language}/signpost.md'
+    source_sha256: 58b300f316ad900b1bf706d2ffa27835f74fe31bceafa6ce5e3be02a9310079c
+    synced_at: '2026-10-10T00:15:22Z'
+    dest_sha256: 58b300f316ad900b1bf706d2ffa27835f74fe31bceafa6ce5e3be02a9310079c
+    block: uc-automa-signpost
