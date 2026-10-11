@@ -11,6 +11,7 @@ All notable changes to uc-portage are recorded here, in the form of [Keep a Chan
 
 ### Changed
 
+- The README's Windows status records the Windows run of 2026-10-11, which met both criteria; Windows is not yet marked verified, pending the network cut's self-test on a network with IPv6.
 - The README installs PyYAML as pure Python, with `--no-binary pyyaml` and `PYYAML_FORCE_LIBYAML=0`, so no platform needs a C compiler, and records that this costs uc-portage no speed.
 
 ## [0.1.0] - 2026-10-11

@@ -47,7 +47,7 @@ The guide, [Using uc-portage](en-ca/docs/guides/usage/using-uc-portage-v0.1.0.md
 | --- | --- |
 | Linux | Tests pass, including wheel and editable installs, on Python 3.12 (Ubuntu 24.04) and Python 3.8 (AlmaLinux 8 container) |
 | macOS | Not yet verified |
-| Windows | Not yet verified |
+| Windows | Not yet marked verified: both criteria below passed on 2026-10-11, on Windows 11 with Python 3.15.0 from manage-python and PyYAML built as pure Python ([record](https://github.com/steelcj/osat-manager-restic/blob/main/tests/e2e/windows/2026-10-11--windows-test-run.md)). The network cut's self-test is to be repeated on a network with IPv6 first, as for osat-manager-restic |
 
 Windows is verified when, on a clean Windows 11 snapshot, as an ordinary user who is not an administrator:
 
