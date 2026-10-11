@@ -11,7 +11,7 @@ dc:format: "text/markdown"
 dc:identifier: "urn:uuid:42bf1203-e493-41db-a93e-0428d75d9217"
 dc:relation: "urn:uuid:d2e61f97-ec1a-470b-b325-604a02379e93"
 dc:language: "en-CA"
-dc:rights: "CC-BY-SA-4.0"
+dc:rights: "CC-BY-4.0"
 sat:version: "0.1.0"
 sat:status: "Accepted"
 ---
@@ -55,4 +55,4 @@ Every `dest` in an offering must be a relative path inside the receiving reposit
 
 ## License
 
-This document, *Decision: Destinations Stay Inside the Target*, by **Christopher Steel**, with AI assistance from **Claude Opus 5.5 (Anthropic)**, is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
+This document, *Decision: Destinations Stay Inside the Target*, by **Christopher Steel**, with AI assistance from **Claude Opus 5.5 (Anthropic)**, is licensed under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).

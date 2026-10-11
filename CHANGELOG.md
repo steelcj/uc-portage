@@ -25,4 +25,4 @@ All notable changes to uc-portage are recorded here, in the form of [Keep a Chan
 - The command is `uc-portage`; there is no short alias and no bare form that means apply.
 - The state file is `.uc-portage-state.yaml`, and block markers read `uc-portage:begin` and `uc-portage:end`.
 - Items with no source, which file-fairy kept as notes, are not part of the offering format.
-- Code is licensed GPL-3.0-or-later and documentation CC-BY-SA-4.0, replacing AGPL-3.0-or-later.
+- Code is licensed MIT and documentation CC BY 4.0, replacing file-fairy's AGPL-3.0-or-later (uc-automa 0025).

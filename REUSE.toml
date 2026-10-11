@@ -3,9 +3,9 @@ version = 1
 [[annotations]]
 path = ["lib/**", "tests/**", "schemas/**", "pyproject.toml", "VERSION", ".uc-automa.yaml", ".uc-portage-state.yaml", ".uc-portage.assets/**", ".gitattributes", ".editorconfig", ".gitignore"]
 SPDX-FileCopyrightText = "Christopher Steel"
-SPDX-License-Identifier = "GPL-3.0-or-later"
+SPDX-License-Identifier = "MIT"
 
 [[annotations]]
 path = ["en-ca/**", "README.md", "CHANGELOG.md", "ROADMAP.md", "CONTRIBUTING.md", "CLAUDE.md"]
 SPDX-FileCopyrightText = "Christopher Steel"
-SPDX-License-Identifier = "CC-BY-SA-4.0"
+SPDX-License-Identifier = "CC-BY-4.0"

@@ -11,7 +11,7 @@ dc:format: "text/markdown"
 dc:identifier: "urn:uuid:d2e61f97-ec1a-470b-b325-604a02379e93"
 dc:source: "github.com/steelcj/file-fairy, en/docs/decisions/sync/decision--file-fairy-manifest-declared-sync-policy-v0-1-0.md at commit 4416bcf2c896ce20fee5dc3554bf67f9f5f22cd5, identifier decision--file-fairy-manifest-declared-sync-policy"
 dc:language: "en-CA"
-dc:rights: "CC-BY-SA-4.0"
+dc:rights: "CC-BY-4.0"
 sat:version: "0.2.0"
 sat:status: "Accepted"
 ---
@@ -77,9 +77,9 @@ Destructive directory operations follow the same rule more strictly. Pruning, wh
 
 | Version | Date | Status | Notes |
 | --- | --- | --- | --- |
-| 0.2.0 | 2026-10-09 | Accepted | Migrated from file-fairy to uc-portage: manifests and groups become offerings, a new urn:uuid with the old identifier in dc:source, relicensed CC-BY-SA-4.0, mirror's first-contact protection recorded, prose unwrapped |
+| 0.2.0 | 2026-10-09 | Accepted | Migrated from file-fairy to uc-portage: manifests and groups become offerings, a new urn:uuid with the old identifier in dc:source, relicensed CC-BY-4.0, mirror's first-contact protection recorded, prose unwrapped |
 | 0.1.0 | 2026-08-02 | Draft | Initial draft in file-fairy: declared sync_mode vocabulary, --force demoted to a one-off mirror override, pruning declaration-only |
 
 ## License
 
-This document, *Decision: Declared Sync Policy*, by **Christopher Steel**, with AI assistance from **Claude (Anthropic)** and **Claude Opus 5.5 (Anthropic)**, is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
+This document, *Decision: Declared Sync Policy*, by **Christopher Steel**, with AI assistance from **Claude (Anthropic)** and **Claude Opus 5.5 (Anthropic)**, is licensed under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).

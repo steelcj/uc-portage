@@ -7,3 +7,21 @@ synced:
     synced_at: '2026-10-10T00:15:22Z'
     dest_sha256: 58b300f316ad900b1bf706d2ffa27835f74fe31bceafa6ce5e3be02a9310079c
     block: uc-automa-signpost
+  LICENSES/MIT.txt:
+    offering: license-mit
+    source: files/LICENSES/MIT.txt
+    source_sha256: 87e9b7fb3f4b078b3f9814d7b6d5d8b2eb520ff44b7f42b58f75e5424d5137be
+    synced_at: '2026-10-11T13:21:40Z'
+    dest_sha256: 87e9b7fb3f4b078b3f9814d7b6d5d8b2eb520ff44b7f42b58f75e5424d5137be
+  LICENSE:
+    offering: license-mit
+    source: files/LICENSES/MIT.txt
+    source_sha256: 87e9b7fb3f4b078b3f9814d7b6d5d8b2eb520ff44b7f42b58f75e5424d5137be
+    synced_at: '2026-10-11T13:21:40Z'
+    dest_sha256: 87e9b7fb3f4b078b3f9814d7b6d5d8b2eb520ff44b7f42b58f75e5424d5137be
+  LICENSES/CC-BY-4.0.txt:
+    offering: license-cc-by-4-0
+    source: files/LICENSES/CC-BY-4.0.txt
+    source_sha256: d557539df68e771cc1eedcc91d13f70fca930e508d11eedcafa4b15db49e3744
+    synced_at: '2026-10-11T13:21:40Z'
+    dest_sha256: d557539df68e771cc1eedcc91d13f70fca930e508d11eedcafa4b15db49e3744

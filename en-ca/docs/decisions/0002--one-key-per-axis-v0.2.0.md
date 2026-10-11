@@ -12,7 +12,7 @@ dc:identifier: "urn:uuid:902f6797-c2ff-45de-8c78-deb172205f20"
 dc:source: "github.com/steelcj/file-fairy, en/docs/decisions/sync/decision--manifest-organization-one-key-per-axis-v0-1-0.md at commit 4416bcf2c896ce20fee5dc3554bf67f9f5f22cd5, identifier decision--manifest-organization-one-key-per-axis"
 dc:relation: "urn:uuid:d2e61f97-ec1a-470b-b325-604a02379e93"
 dc:language: "en-CA"
-dc:rights: "CC-BY-SA-4.0"
+dc:rights: "CC-BY-4.0"
 sat:version: "0.2.0"
 sat:status: "Accepted"
 ---
@@ -64,9 +64,9 @@ The five rulings, each decided as the design recommended:
 
 | Version | Date | Status | Notes |
 | --- | --- | --- | --- |
-| 0.2.0 | 2026-10-09 | Accepted | Migrated from file-fairy to uc-portage: manifests become offerings, markers renamed to uc-portage, implementation state recorded, a new urn:uuid with the old identifier in dc:source, relicensed CC-BY-SA-4.0 |
+| 0.2.0 | 2026-10-09 | Accepted | Migrated from file-fairy to uc-portage: manifests become offerings, markers renamed to uc-portage, implementation state recorded, a new urn:uuid with the old identifier in dc:source, relicensed CC-BY-4.0 |
 | 0.1.0 | 2026-08-03 | Draft | Initial record in file-fairy, ratifying the design and its five recommendations; absent-first order confirmed |
 
 ## License
 
-This document, *Decision: One Key per Axis*, by **Christopher Steel**, with AI assistance from **Claude Fable 5 (Anthropic)** and **Claude Opus 5.5 (Anthropic)**, is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
+This document, *Decision: One Key per Axis*, by **Christopher Steel**, with AI assistance from **Claude Fable 5 (Anthropic)** and **Claude Opus 5.5 (Anthropic)**, is licensed under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
