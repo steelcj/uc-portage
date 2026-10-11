@@ -4,6 +4,8 @@ Forward plan only; completed items move to [CHANGELOG.md](CHANGELOG.md).
 
 ## Next release
 
+- Guarded retraction (decision 0004): an optional `accepted_sha256` list on retraction items, removal only on a matching normalised checksum, and "retained: content differs from every known version" reported by plan, apply and harvest. Ships together with uc-automa 0.2.0's first offering that uses it.
+
 - `harvest` writes changes back to the publishing repository's checkout. Whether as a branch, a patch file or both is an open question.
 
 ## Later

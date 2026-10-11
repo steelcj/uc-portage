@@ -4,6 +4,10 @@ All notable changes to uc-portage are recorded here, in the form of [Keep a Chan
 
 ## [Unreleased]
 
+### Added
+
+- Decision 0004, guarded retraction, to be implemented in 0.2.0.
+
 ## [0.1.0] - 2026-10-11
 
 ### Added

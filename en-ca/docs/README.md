@@ -17,6 +17,7 @@ Every document under `en-ca/docs/`, with its version and status, taken from its 
 | [Decision: Declared Sync Policy](decisions/0001--declared-sync-policy-v0.2.0.md) | 0.2.0 | Accepted |
 | [Decision: One Key per Axis](decisions/0002--one-key-per-axis-v0.2.0.md) | 0.2.0 | Accepted |
 | [Decision: Destinations Stay Inside the Target](decisions/0003--destinations-stay-inside-the-target-v0.1.0.md) | 0.1.0 | Accepted |
+| [Decision: Guarded Retraction](decisions/0004--guarded-retraction-v0.1.0.md) | 0.1.0 | Accepted |
 
 ## License
 
