@@ -10,10 +10,25 @@ Python 3.8 or later and PyYAML. uc-portage uses only the standard library otherw
 
 ## Install
 
+From a checkout:
+
 ```sh
-python3 -m pip install .
+PYYAML_FORCE_LIBYAML=0 python3 -m pip install --no-binary pyyaml .
 uc-portage --version
 ```
+
+On Windows, in Command Prompt:
+
+```bat
+set PYYAML_FORCE_LIBYAML=0
+python -m pip install --no-binary pyyaml .
+```
+
+### Why PyYAML is built as pure Python
+
+uc-portage and uc-automa depend on PyYAML, whose optional C extension, built against libyaml, needs a C compiler wherever PyPI has no PyYAML wheel for your Python: PyYAML 6.0.3 has none for Python 3.15 on Windows. `--no-binary pyyaml` with `PYYAML_FORCE_LIBYAML=0` builds PyYAML from its source as pure Python on every platform instead, giving the same `py3-none-any` wheel everywhere, with no compiler.
+
+The speed cost is none for uc-portage. They read and write YAML only through `yaml.safe_load` and `yaml.safe_dump`, which run PyYAML's Python code whether or not the extension is present; the extension speeds up only the `CLoader` and `CSafeLoader` family, which they do not use. Measured on 2026-10-11 on Linux with Python 3.12, loading all 19 YAML files uc-portage and uc-automa ship, 31 KB, took 41 ms with the pure build and 43 ms with PyYAML's binary wheel; `CSafeLoader` would have taken 5 ms. Another program in the same environment that imports `CSafeLoader` without a fallback fails with `ImportError`, so give the tools their own virtual environment if anything else there needs the extension.
 
 ## Use
 
@@ -33,6 +48,13 @@ The guide, [Using uc-portage](en-ca/docs/guides/usage/using-uc-portage-v0.1.0.md
 | Linux | Tests pass, including wheel and editable installs, on Python 3.12 (Ubuntu 24.04) and Python 3.8 (AlmaLinux 8 container) |
 | macOS | Not yet verified |
 | Windows | Not yet verified |
+
+Windows is verified when, on a clean Windows 11 snapshot, as an ordinary user who is not an administrator:
+
+- the unit tests of uc-portage and uc-automa pass, with their install tests, and `uc-automa check` passes on uc-automa itself;
+- uc-portage and uc-automa install with `pip install --no-index`, inside a network cut, from wheels built from their release tags and the pure `py3-none-any` PyYAML wheel, and the installed `uc-automa check` then passes on uc-automa at its tag.
+
+`tests/e2e/windows/run_over_ssh.py` in osat-manager-restic runs both and writes a record.
 
 ## Develop
 

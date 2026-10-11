@@ -7,6 +7,11 @@ All notable changes to uc-portage are recorded here, in the form of [Keep a Chan
 ### Added
 
 - Decision 0004, guarded retraction, to be implemented in 0.2.0.
+- The README states what verifies Windows: the unit tests, and an install from wheels with `pip install --no-index` inside a network cut.
+
+### Changed
+
+- The README installs PyYAML as pure Python, with `--no-binary pyyaml` and `PYYAML_FORCE_LIBYAML=0`, so no platform needs a C compiler, and records that this costs uc-portage no speed.
 
 ## [0.1.0] - 2026-10-11
 
