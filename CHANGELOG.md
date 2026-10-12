@@ -11,8 +11,13 @@ All notable changes to uc-portage are recorded here, in the form of [Keep a Chan
 
 ### Changed
 
+- The README links to uc-automa 0027 for what verifies a platform, instead of carrying its own Windows criteria.
 - The README's Windows status records the Windows run of 2026-10-11, which met both criteria; Windows is not yet marked verified, pending the network cut's self-test on a network with IPv6.
 - The README installs PyYAML as pure Python, with `--no-binary pyyaml` and `PYYAML_FORCE_LIBYAML=0`, so no platform needs a C compiler, and records that this costs uc-portage no speed.
+
+### Fixed
+
+- The install tests make their virtual environments with symbolic links outside Windows, as `python -m venv` does, so they also run on manage-python's Python 3.8, whose interpreter cannot start when copied.
 
 ## [0.1.0] - 2026-10-11
 

@@ -123,7 +123,10 @@ class Installs(unittest.TestCase):
 
     def fresh_env(self, name):
         env = self.tmp / name
-        venv.EnvBuilder(with_pip=True).create(env)
+        # Symbolic links on POSIX, as `python -m venv` makes them: a copied
+        # interpreter cannot find its libpython in builds that link it
+        # relative to the binary, such as python-build-standalone's 3.8.
+        venv.EnvBuilder(with_pip=True, symlinks=os.name != "nt").create(env)
         # Editable installs without setup.py need pip 21.3 or later
         # (PEP 660); some Python 3.8 builds bundle an older pip.
         self.run_in(env, "-m", "pip", "install", "-q", "--upgrade", "pip")

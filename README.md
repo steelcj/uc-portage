@@ -47,14 +47,9 @@ The guide, [Using uc-portage](en-ca/docs/guides/usage/using-uc-portage-v0.1.0.md
 | --- | --- |
 | Linux | Tests pass, including wheel and editable installs, on Python 3.12 (Ubuntu 24.04) and Python 3.8 (AlmaLinux 8 container) |
 | macOS | Not yet verified |
-| Windows | Not yet marked verified: both criteria below passed on 2026-10-11, on Windows 11 with Python 3.15.0 from manage-python and PyYAML built as pure Python ([record](https://github.com/steelcj/osat-manager-restic/blob/main/tests/e2e/windows/2026-10-11--windows-test-run.md)). The network cut's self-test is to be repeated on a network with IPv6 first, as for osat-manager-restic |
+| Windows | Not yet verified. On 2026-10-11, on Windows 11 with Python 3.15.0 from manage-python, the unit tests and an offline install from wheels passed ([record](https://github.com/steelcj/osat-manager-restic/blob/main/tests/e2e/windows/2026-10-11--windows-test-run.md)), but that run predates the verification run and does not count as one |
 
-Windows is verified when, on a clean Windows 11 snapshot, as an ordinary user who is not an administrator:
-
-- the unit tests of uc-portage and uc-automa pass, with their install tests, and `uc-automa check` passes on uc-automa itself;
-- uc-portage and uc-automa install with `pip install --no-index`, inside a network cut, from wheels built from their release tags and the pure `py3-none-any` PyYAML wheel, and the installed `uc-automa check` then passes on uc-automa at its tag.
-
-`tests/e2e/windows/run_over_ssh.py` in osat-manager-restic runs both and writes a record.
+A platform is verified for uc-portage by a verification run: its unit tests, also on the oldest Python it supports, an offline install inside a network cut from the wheels a release would publish, and the installed tool doing its job on a real repository, recorded under `tests/e2e/<platform>/`, as [uc-automa 0027](https://github.com/steelcj/uc-automa/blob/main/en-ca/docs/decisions/0027--verification-without-an-end-to-end-scenario-v0.1.0.md) defines.
 
 ## Develop
 
