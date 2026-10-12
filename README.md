@@ -58,13 +58,26 @@ A platform is verified for uc-portage by a verification run: its unit tests, als
 
 ## Develop
 
+From a checkout:
+
 ```sh
-python3 -m unittest discover -s tests
+python3 -m venv .venv
+PYYAML_FORCE_LIBYAML=0 .venv/bin/python -m pip install --no-binary pyyaml -e .
+.venv/bin/python -m unittest discover -s tests
 ```
 
-The tests run from a checkout without installing; they build scratch offerings and targets and run the command in-process. Setting `UC_PORTAGE_INSTALL_TESTS=1` adds tests that build a wheel and an editable install in fresh virtual environments, which needs network access.
+On Windows, in Command Prompt:
 
-An editable install, `python3 -m pip install -e .`, needs pip 21.3 or later, because the project is defined by `pyproject.toml` alone.
+```bat
+python -m venv .venv
+set PYYAML_FORCE_LIBYAML=0
+.venv\Scripts\python -m pip install --no-binary pyyaml -e .
+.venv\Scripts\python -m unittest discover -s tests
+```
+
+The tests import uc-portage from the checkout's `lib/`, and take PyYAML from the virtual environment; they build scratch offerings and targets and run the command in-process. Setting `UC_PORTAGE_INSTALL_TESTS=1` adds tests that build a wheel and an editable install in fresh virtual environments, which needs network access.
+
+The editable install needs pip 21.3 or later, because the project is defined by `pyproject.toml` alone.
 
 `schemas/` lives once, at the repository root. `pyproject.toml` maps it into the package as `uc_portage.schemas`, so a wheel carries it. In an editable install or a checkout, `uc_portage.resources.data_dir` falls back to the repository root, but only after confirming that the root's `pyproject.toml` names this project; otherwise it fails with an error naming the missing data. The reasons are recorded in uc-automa 0019, *Decision: Package Data Mapped from the Repository Root* (`urn:uuid:7ba945fe-2f0d-45fb-a347-bda6d12294be`), which both tools follow.
 
