@@ -13,16 +13,21 @@ Python 3.8 or later and PyYAML. uc-portage uses only the standard library otherw
 From a checkout:
 
 ```sh
-PYYAML_FORCE_LIBYAML=0 python3 -m pip install --no-binary pyyaml .
-uc-portage --version
+python3 -m venv .venv
+PYYAML_FORCE_LIBYAML=0 .venv/bin/python -m pip install --no-binary pyyaml .
+.venv/bin/uc-portage --version
 ```
 
 On Windows, in Command Prompt:
 
 ```bat
+python -m venv .venv
 set PYYAML_FORCE_LIBYAML=0
-python -m pip install --no-binary pyyaml .
+.venv\Scripts\python -m pip install --no-binary pyyaml .
+.venv\Scripts\uc-portage --version
 ```
+
+pip installs into a virtual environment, `.venv` in the current directory, because the Python that manage-python installs refuses package installs, as do the system Pythons of Debian, Ubuntu and other distributions that mark theirs externally managed. Activate it to put `uc-portage` on your `PATH`: `. .venv/bin/activate`, or `.venv\Scripts\activate` in Command Prompt.
 
 ### Why PyYAML is built as pure Python
 
