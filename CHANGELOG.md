@@ -11,6 +11,7 @@ All notable changes to uc-portage are recorded here, in the form of [Keep a Chan
 
 ### Changed
 
+- The README's Linux and macOS commands run `python`, the command manage-python installs, as the Windows ones do: on Ubuntu `python3` is the system Python, whose `venv` needs `python3-venv`. A note covers other Pythons.
 - The README installs into a virtual environment, `.venv`, because the Python manage-python installs, like the system Python of several Linux distributions, refuses package installs.
 - The README's Develop section creates the virtual environment too, installs PyYAML into it for the tests, and gives the Command Prompt commands.
 - The README links to uc-automa 0027 for what verifies a platform, instead of carrying its own Windows criteria.

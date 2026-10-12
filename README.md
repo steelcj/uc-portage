@@ -13,7 +13,7 @@ Python 3.8 or later and PyYAML. uc-portage uses only the standard library otherw
 From a checkout:
 
 ```sh
-python3 -m venv .venv
+python -m venv .venv
 PYYAML_FORCE_LIBYAML=0 .venv/bin/python -m pip install --no-binary pyyaml .
 .venv/bin/uc-portage --version
 ```
@@ -28,6 +28,8 @@ set PYYAML_FORCE_LIBYAML=0
 ```
 
 pip installs into a virtual environment, `.venv` in the current directory, because the Python that manage-python installs refuses package installs, as do the system Pythons of Debian, Ubuntu and other distributions that mark theirs externally managed. Activate it to put `uc-portage` on your `PATH`: `. .venv/bin/activate`, or `.venv\Scripts\activate` in Command Prompt.
+
+`python` is the command manage-python installs, on Linux, macOS and Windows alike. With another Python, use its own command instead, such as `python3`. On Debian and Ubuntu the system Python's `venv` module needs the `python3-venv` package first: `sudo apt install python3-venv`.
 
 ### Why PyYAML is built as pure Python
 
@@ -61,7 +63,7 @@ A platform is verified for uc-portage by a verification run: its unit tests, als
 From a checkout:
 
 ```sh
-python3 -m venv .venv
+python -m venv .venv
 PYYAML_FORCE_LIBYAML=0 .venv/bin/python -m pip install --no-binary pyyaml -e .
 .venv/bin/python -m unittest discover -s tests
 ```
